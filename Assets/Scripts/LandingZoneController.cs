@@ -3,7 +3,7 @@ using UnityEngine;
 public class LandingZoneController : MonoBehaviour
 {
     [SerializeField] private FlightExamManager examManager;
-
+    [SerializeField] private AudioSource successAudioSource; 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -13,6 +13,11 @@ public class LandingZoneController : MonoBehaviour
                 if (examManager.CanLand())
                 {
                     examManager.CompleteMission();
+
+                    if (successAudioSource != null)
+                    {
+                        successAudioSource.Play();
+                    }
                 }
                 else
                 {
