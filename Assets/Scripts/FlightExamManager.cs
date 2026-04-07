@@ -64,4 +64,26 @@ public class FlightExamManager : MonoBehaviour
             missionText.text = "Mission: Escape failed. Take off and try again.";
         }
     }
+    public bool CanLand()
+    {
+        return threatCleared; 
+    }
+
+    public void CompleteMission()
+    {
+        if (missionComplete) return; 
+
+        missionComplete = true;
+
+        if (statusText != null)
+        {
+            statusText.text = "MISSION ACCOMPLISHED!";
+            statusText.color = Color.blue;
+        }
+
+        if (missionText != null)
+        {
+            missionText.text = "Congratulations! Safe landing confirmed.";
+        }
+    }
 }
