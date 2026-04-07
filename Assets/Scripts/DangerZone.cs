@@ -45,7 +45,7 @@ public class DangerZoneController : MonoBehaviour
     private IEnumerator MissileCountdown(Transform playerTarget)
     {
         yield return new WaitForSeconds(missileDelay);
-        Debug.Log("5 seconds passed! (Task 3: Missile will launch here)");
+        Debug.Log("5 seconds passed! ((Missile will launch here)");
 
         if (missileLauncher != null)
         {
