@@ -8,6 +8,7 @@ TagManager:
   - TakeOff
   - Landing
   - Missile
+  - LandingArea
   layers:
   - Default
   - TransparentFX
