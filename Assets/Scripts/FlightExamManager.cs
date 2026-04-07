@@ -9,9 +9,13 @@ public class FlightExamManager : MonoBehaviour
     private bool hasTakenOff = false;
     private bool threatCleared = false;
     private bool missionComplete = false;
+    
+    private bool wasJustHit = false; 
 
     public void EnterDangerZone()
     {
+        wasJustHit = false; 
+
         if (statusText != null)
         {
             statusText.text = "Entered a Dangerous Zone!";
@@ -26,6 +30,11 @@ public class FlightExamManager : MonoBehaviour
 
     public void ExitDangerZone()
     {
+        if (wasJustHit)
+        {
+            wasJustHit = false; 
+            return; 
+        }
         threatCleared = true;
 
         if (statusText != null)
@@ -36,6 +45,23 @@ public class FlightExamManager : MonoBehaviour
         if (missionText != null)
         {
             missionText.text = "Mission: Land safely on the landing strip.";
+        }
+    }
+
+    public void HandleMissileHit()
+    {
+        threatCleared = false; 
+        wasJustHit = true; 
+        
+        if (statusText != null)
+        {
+            statusText.text = "AIRCRAFT HIT! Penalty applied.";
+            statusText.color = Color.red;
+        }
+
+        if (missionText != null)
+        {
+            missionText.text = "Mission: Escape failed. Take off and try again.";
         }
     }
 }
