@@ -17,7 +17,7 @@ public class DangerZoneController : MonoBehaviour
             {
                 examManager.EnterDangerZone();
             }
-            activeCountdown = StartCoroutine(MissileCountdown());
+            activeCountdown = StartCoroutine(MissileCountdown(collision.transform));
         }
     }
 
@@ -35,11 +35,22 @@ public class DangerZoneController : MonoBehaviour
             {
                 examManager.ExitDangerZone();
             }
+            if (missileLauncher != null)
+            {
+                missileLauncher.DestroyActiveMissile();
+            }
         }
     }
-    private IEnumerator MissileCountdown()
+
+    private IEnumerator MissileCountdown(Transform playerTarget)
     {
         yield return new WaitForSeconds(missileDelay);
         Debug.Log("5 seconds passed! (Task 3: Missile will launch here)");
+
+        if (missileLauncher != null)
+        {
+            missileLauncher.Launch(playerTarget);
+        }
+        activeCountdown = null;
     }
 }
